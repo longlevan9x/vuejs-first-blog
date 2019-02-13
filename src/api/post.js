@@ -17,5 +17,15 @@ export default {
         return Request.get("top-headlines?" + query).then(
             response => response.data
         );
+    },
+    show() {
+        let params = {};
+        let query = Object.keys(params)
+            .map(key => key + "=" + params[key])
+            .join("&");
+        //return promise
+        return Request.get("top-headlines?" + query).then(
+            response => response.data
+        );
     }
 };
