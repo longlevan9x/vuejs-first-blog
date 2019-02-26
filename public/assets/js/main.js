@@ -656,7 +656,7 @@ function clSlickSlider() {
         clPrettyPrint();
         clSearch();
         clMobileMenu();
-        clMasonryFolio();
+        //clMasonryFolio();
         clSlickSlider();
         clSmoothScroll();
         clPlaceholder();

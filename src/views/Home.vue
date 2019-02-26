@@ -128,34 +128,35 @@
         <div class="masonry">
           <div class="grid-sizer"></div>
 
-
-          <article class="masonry__brick entry format-standard" data-aos="fade-up" v-for="post in posts">
-            <div class="entry__thumb" v-if="post.urlToImage">
-              <a href="single-standard.html" class="entry__thumb-link">
-                <img v-bind:src="post.urlToImage" :srcset="post.urlToImage" alt="" />
-              </a>
-            </div>
-            <div class="entry__text">
-              <div class="entry__header">
-                <div class="entry__date">
-                  <a href="single-standard.html">{{post.publishedAt}}</a>
+          <div v-masonry transition-duration="0.3s" item-selector=".item">
+              <article v-masonry-tile  class="item masonry__brick entry format-standard" data-aos="fade-up" v-for="post in posts">
+              <div class="entry__thumb" v-if="post.image">
+                  <router-link :to="getSlugID(post)" class="entry__thumb-link">
+                      <img v-bind:src="post.image" :srcset="post.image" alt="" />
+                  </router-link>
+              </div>
+              <div class="entry__text">
+                <div class="entry__header">
+                  <div class="entry__date">
+                      <a href="#">{{post.created_at}}</a>
+                  </div>
+                  <h1 class="entry__title">
+                      <router-link :to="getSlugID(post)" class="entry__thumb-link">{{post.title}}</router-link>
+                  </h1>
                 </div>
-                <h1 class="entry__title">
-                  <a href="single-standard.html">{{post.title}}</a>
-                </h1>
-              </div>
-              <div class="entry__excerpt">
-                <p>{{post.description}}...
-                </p>
-              </div>
-              <div class="entry__meta">
+                <div class="entry__excerpt">
+                  <p>{{post.overview}}...
+                  </p>
+                </div>
+                <div class="entry__meta">
                           <span class="entry__meta-links">
                             <a href="category.html">Design</a>
                             <a href="category.html">Photography</a>
                           </span>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </div>
           <!-- end article -->
 
         </div>
@@ -204,30 +205,25 @@
 </template>
 
 <script>
-import post from "../api/post.js";
+import {mapState} from 'vuex';
 export default {
   name: "home",
     data() {
-        return {posts: []};
+        return {};
     },
-    mounted() {
-        this.getPosts();
+    computed: {
+        ...mapState({
+            posts: state => state.posts.posts
+        })
+    },
+    created(){
+        this.$store.dispatch('posts/getPosts');
     },
     methods: {
-        async getPosts() {
-            await post.get().then(response => {
-                this.posts = response.articles;
-                this.$nextTick().then(function () {
-                    if (typeof clMasonryFolio == "function") {
-                        clMasonryFolio();
-                    }
-                    if (typeof clSlickSlider == "function") {
-                        clSlickSlider();
-                    }
-                })
-            });
+        getSlugID(post) {
+            return post.slug + "--" + post.id;
         }
-    },
+    }
 };
 </script>
 

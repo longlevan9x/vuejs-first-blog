@@ -1,30 +1,22 @@
-import Request       from "./request";
-import Constants     from "../utils/constants";
+import Request   from "./request";
+import Constants from "../utils/constants";
 //import {queryParams} from "../utils/helpers";
 
 export default {
-    get() {
-        let params = {
-            apiKey: Constants.API_KEY,
-            source: Constants.SOURCE,
-            country : 'us'
-        };
+    get(params = {}) {
+        params.is_active = 1;
 
         let query = Object.keys(params)
             .map(key => key + "=" + params[key])
             .join("&");
         //return promise
-        return Request.get("top-headlines?" + query).then(
+        return Request.get("post?" + query).then(
             response => response.data
         );
     },
-    show() {
-        let params = {};
-        let query = Object.keys(params)
-            .map(key => key + "=" + params[key])
-            .join("&");
+    getBySlug(slug) {
         //return promise
-        return Request.get("top-headlines?" + query).then(
+        return Request.get(`post/${slug}`).then(
             response => response.data
         );
     }
