@@ -1,39 +1,75 @@
 import post     from "../api/post";
 import category from "../api/category";
+import Paginate from "../utils/paginate";
 
 const state = {
-    posts:     [],
-    isLoading: false,
-    post:      {}
+    posts:       [],
+    isLoading:   false,
+    post:        {},
+    paginate:    {},
+    postTop:     {},
+    listTop:     [],
+    listPopular: []
 };
 
 const actions = {
-    getPosts({commit}) {
-        commit("displayLoading", true);
-        post.get().then(response => {
-            commit("setPosts", response.result.data);
-            commit("displayLoading", false);
+    getPosts({commit}, params) {
+        post.get(params).then(response => {
+            let result = response.result;
+            commit("setPosts", result);
         });
     },
-    getPostsByCategory({commit}, category_id) {
-        post.get({category_id: category_id}).then(response => {
-            commit("setPosts", response.result.data);
+    getPostsByCategory({commit}, params) {
+        post.get(params).then(response => {
+            if (response.status === 200) {
+                let result = response.result;
+                commit("setPosts", result);
+            }
         });
     },
+    getPostsTop({commit}) {
+        post.getListTop().then(response => {
+            if (response.status === 200) {
+                commit("setListTop", response.result);
+            }
+        });
+    },
+    getPostsPopular({commit}) {
+        post.getListPopular().then(response => {
+            if (response.status === 200) {
+                commit("setListPopular", response.result);
+            }
+        });
+    },
+
     getDetail({commit}, slug) {
         post.getBySlug(slug).then(response => {
-            commit('setPost', response.result)
-        })
+            commit("setPost", response.result);
+        });
     }
 };
 
 const mutations = {
+    setPaginate(state, paginate) {
+        state.paginate = paginate;
+    },
+    // set data & list data
     setPost(state, post) {
-        state.post = post
+        state.post = post;
     },
-    setPosts(state, posts) {
-        state.posts = posts;
+    setPosts(state, result) {
+        state.posts    = result.data;
+        state.paginate = new Paginate(result.current_page, result.last_page, result.path, result.per_page, result.from, result.to, result.total);
     },
+    setListTop(state, posts) {
+        state.postTop = posts[0];
+        delete  posts[0];
+        state.listTop = posts;
+    },
+    setListPopular(state, posts) {
+        state.listPopular = posts;
+    },
+
     displayLoading(state, payLoad) {
         state.isLoading = payLoad;
     },

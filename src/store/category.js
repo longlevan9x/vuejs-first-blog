@@ -3,7 +3,7 @@ import category from "../api/category";
 const state = {
     list:      [],
     isLoading: false,
-    detail:    {}
+    detail:    {},
 };
 
 const actions = {
@@ -16,7 +16,7 @@ const actions = {
     },
     getCategoryBySlug({commit}, slug) {
         return category.detailBySlug(slug).then(response => {
-            commit('setCategory', response.result);
+            commit("setCategory", response.result);
             return response.result;
         });
     }

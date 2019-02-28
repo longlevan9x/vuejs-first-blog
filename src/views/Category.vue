@@ -55,37 +55,19 @@
         </div>
         <!-- end masonry-wrap -->
 
+        <!-- end masonry-wrap -->
         <div class="row">
             <div class="col-full">
                 <nav class="pgn">
                     <ul>
-                        <li>
-                            <a class="pgn__prev" href="#0">Prev</a>
+                        <li><a :class="'pgn__prev ' + (currentPage === 1 ? 'hide' : '')" @click="handleChangePage(currentPage - 1)">Prev</a></li>
+                        <li v-for="page in paginate.last_page">
+                            <a :class="(page === currentPage ? 'current ' : '') + ' ' + 'pgn__num'" @click="handleChangePage(page)">{{page}}</a>
                         </li>
-                        <li>
-                            <a class="pgn__num" href="#0">1</a>
-                        </li>
-                        <li>
-                            <span class="pgn__num current">2</span>
-                        </li>
-                        <li>
-                            <a class="pgn__num" href="#0">3</a>
-                        </li>
-                        <li>
-                            <a class="pgn__num" href="#0">4</a>
-                        </li>
-                        <li>
-                            <a class="pgn__num" href="#0">5</a>
-                        </li>
-                        <li>
-                            <span class="pgn__num dots">…</span>
-                        </li>
-                        <li>
-                            <a class="pgn__num" href="#0">8</a>
-                        </li>
-                        <li>
-                            <a class="pgn__next" href="#0">Next</a>
-                        </li>
+                        <li><a :class="'pgn__next ' + (currentPage === paginate.last_page ? 'hide' : '')" @click="handleChangePage(currentPage + 1)">Next</a></li>
+                        <!--<li>-->
+                        <!--<span class="pgn__num dots">…</span>-->
+                        <!--</li>-->
                     </ul>
                 </nav>
             </div>
@@ -100,19 +82,22 @@
     export default {
         name:     "Category",
         data() {
-            return {};
+            return {
+                currentPage: 1
+            };
         },
         computed: {
             ...mapState({
                 category: state => state.category.detail,
-                posts:    state => state.posts.posts
+                posts:    state => state.posts.posts,
+                paginate: state => state.posts.paginate
             })
         },
         beforeCreate() {
         },
         created() {
             this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
-                this.$store.dispatch("posts/getPostsByCategory", category.id);
+                this.getPostByCategory(category.id);
             });
         },
         methods:  {
@@ -121,12 +106,26 @@
             },
             getSlugID(post) {
                 return post.slug + "--" + post.id;
+            },
+            handleChangePage(page) {
+                if (page <= 0) {
+                    page = 1;
+                }
+                else if(page >= this.paginate.last_page) {
+                    page = this.paginate.last_page;
+                }
+                console.log(page);
+                this.currentPage = page;
+                this.getPostByCategory(this.category.id, page);
+            },
+            getPostByCategory(category_id, page = 1) {
+                this.$store.dispatch("posts/getPostsByCategory", {category_id: category_id, page :page});
             }
         },
         watch:    {
             "$route.params"(to, from) {
                 this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug);
-                this.$store.dispatch("posts/getPostsByCategory", this.category.id);
+                this.getPostByCategory(this.category.id);
             }
         }
     };
@@ -135,6 +134,10 @@
     #img-category {
         width: 35%;
         margin: 0 auto;
+    }
+
+    .hide {
+        display: none;
     }
 </style>
 <!--<article-->

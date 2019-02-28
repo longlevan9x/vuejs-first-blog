@@ -1,790 +1,745 @@
 <template>
-  <div class="home">
-    <div class="s-pageheader-content">
-      <div class="pageheader-content row">
-        <div class="col-full">
-          <div class="featured">
-            <div class="featured__column featured__column--big">
-              <div
-                class="entry"
-                style="background-image:url('/assets/images/thumbs/featured/featured-guitarman.jpg');"
-              >
-                <div class="entry__content">
-                  <span class="entry__category"><a href="#0">Music</a></span>
+    <div class="home">
+        <div class="s-pageheader-content">
+            <div class="pageheader-content row">
+                <div class="col-full">
+                    <div class="featured">
+                        <div class="featured__column featured__column--big">
+                            <div class="entry" :style="{backgroundImage: 'url(' +  postTop.image + ')'}">
+                                <div class="entry__content">
+                                    <span class="entry__category">
+                                        <router-link :to="postTop.category.slug">{{postTop.category.name}}</router-link>
+                                    </span>
+                                    <h1>
+                                        <router-link :to="getSlugID(postTop)">{{postTop.title}}</router-link>
+                                    </h1>
 
-                  <h1>
-                    <a href="#0" title=""
-                      >What Your Music Preference Says About You and Your
-                      Personality.</a
-                    >
-                  </h1>
+                                    <div class="entry__info">
+                                        <a href="#0" class="entry__profile-pic">
+                                            <img class="avatar" src="/assets/images/avatars/user-03.jpg" alt="" />
+                                        </a>
 
-                  <div class="entry__info">
-                    <a href="#0" class="entry__profile-pic">
-                      <img
-                        class="avatar"
-                        src="/assets/images/avatars/user-03.jpg"
-                        alt=""
-                      />
-                    </a>
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#0">John Doe</a>
+                                            </li>
+                                            <li>{{postTop.created_at}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- end entry__content -->
+                            </div>
+                            <!-- end entry -->
+                        </div>
+                        <!-- end featured__big -->
 
-                    <ul class="entry__meta">
-                      <li>
-                        <a href="#0">John Doe</a>
-                      </li>
-                      <li>December 29, 2017</li>
-                    </ul>
-                  </div>
+                        <div class="featured__column featured__column--small">
+                            <div class="entry" :style="{backgroundImage: 'url(' + post_top.image + ')'}" v-for="post_top in postsTop" v-if="post_top !== undefined">
+                                <div class="entry__content">
+                                    <span class="entry__category">
+                                        <router-link :to="post_top.category.slug">{{post_top.category.name}}</router-link>
+                                    </span>
+                                    <h1>
+                                        <router-link :to="getSlugID(post_top)">{{post_top.title}}</router-link>
+                                    </h1>
+
+                                    <div class="entry__info">
+                                        <a href="#0" class="entry__profile-pic">
+                                            <img class="avatar" src="/assets/images/avatars/user-03.jpg" alt="" />
+                                        </a>
+
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#0">John Doe</a>
+                                            </li>
+                                            <li>{{postTop.created_at}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- end entry__content -->
+                            </div>
+                            <!-- end entry -->
+                        </div>
+                        <!-- end featured__small -->
+                    </div>
+                    <!-- end featured -->
                 </div>
-                <!-- end entry__content -->
-              </div>
-              <!-- end entry -->
+                <!-- end col-full -->
             </div>
-            <!-- end featured__big -->
-
-            <div class="featured__column featured__column--small">
-              <div
-                class="entry"
-                style="background-image:url('/assets/images/thumbs/featured/featured-watch.jpg');"
-              >
-                <div class="entry__content">
-                  <span class="entry__category"
-                    ><a href="#0">Management</a></span
-                  >
-
-                  <h1>
-                    <a href="#0" title=""
-                      >The Pomodoro Technique Really Works.</a
-                    >
-                  </h1>
-
-                  <div class="entry__info">
-                    <a href="#0" class="entry__profile-pic">
-                      <img
-                        class="avatar"
-                        src="/assets/images/avatars/user-03.jpg"
-                        alt=""
-                      />
-                    </a>
-
-                    <ul class="entry__meta">
-                      <li>
-                        <a href="#0">John Doe</a>
-                      </li>
-                      <li>December 27, 2017</li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- end entry__content -->
-              </div>
-              <!-- end entry -->
-
-              <div
-                class="entry"
-                style="background-image:url('/assets/images/thumbs/featured/featured-beetle.jpg');"
-              >
-                <div class="entry__content">
-                  <span class="entry__category"
-                    ><a href="#0">LifeStyle</a></span
-                  >
-
-                  <h1>
-                    <a href="#0" title="">Throwback To The Good Old Days.</a>
-                  </h1>
-
-                  <div class="entry__info">
-                    <a href="#0" class="entry__profile-pic">
-                      <img
-                        class="avatar"
-                        src="/assets/images/avatars/user-03.jpg"
-                        alt=""
-                      />
-                    </a>
-
-                    <ul class="entry__meta">
-                      <li>
-                        <a href="#0">John Doe</a>
-                      </li>
-                      <li>December 21, 2017</li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- end entry__content -->
-              </div>
-              <!-- end entry -->
-            </div>
-            <!-- end featured__small -->
-          </div>
-          <!-- end featured -->
+            <!-- end pageheader-content row -->
         </div>
-        <!-- end col-full -->
-      </div>
-      <!-- end pageheader-content row -->
-    </div>
-    <!-- s-content
-         ================================================== -->
-    <section class="s-content">
-      <div class="row masonry-wrap">
-        <div class="masonry">
-          <div class="grid-sizer"></div>
+        <!-- s-content
+             ================================================== -->
+        <section class="s-content">
+            <div class="row masonry-wrap">
+                <div class="masonry">
+                    <div class="grid-sizer"></div>
 
-          <div v-masonry transition-duration="0.3s" item-selector=".item">
-              <article v-masonry-tile  class="item masonry__brick entry format-standard" data-aos="fade-up" v-for="post in posts">
-              <div class="entry__thumb" v-if="post.image">
-                  <router-link :to="getSlugID(post)" class="entry__thumb-link">
-                      <img v-bind:src="post.image" :srcset="post.image" alt="" />
-                  </router-link>
-              </div>
-              <div class="entry__text">
-                <div class="entry__header">
-                  <div class="entry__date">
-                      <a href="#">{{post.created_at}}</a>
-                  </div>
-                  <h1 class="entry__title">
-                      <router-link :to="getSlugID(post)" class="entry__thumb-link">{{post.title}}</router-link>
-                  </h1>
-                </div>
-                <div class="entry__excerpt">
-                  <p>{{post.overview}}...
-                  </p>
-                </div>
-                <div class="entry__meta">
+                    <div v-masonry transition-duration="0.5s" item-selector=".item">
+                        <article v-masonry-tile class="item masonry__brick entry format-standard" data-aos="fade-up" v-for="post in posts">
+                            <div class="entry__thumb" v-if="post.image">
+                                <router-link :to="getSlugID(post)" class="entry__thumb-link">
+                                    <img v-bind:src="post.image" :srcset="post.image" alt="" />
+                                </router-link>
+                            </div>
+                            <div class="entry__text">
+                                <div class="entry__header">
+                                    <div class="entry__date">
+                                        <a href="#">{{post.created_at}}</a>
+                                    </div>
+                                    <h1 class="entry__title">
+                                        <router-link :to="getSlugID(post)" class="entry__thumb-link">{{post.title}}</router-link>
+                                    </h1>
+                                </div>
+                                <div class="entry__excerpt">
+                                    <p>{{post.overview}}...
+                                    </p>
+                                </div>
+                                <div class="entry__meta">
                           <span class="entry__meta-links">
                             <a href="category.html">Design</a>
                             <a href="category.html">Photography</a>
                           </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- end article -->
+
                 </div>
-              </div>
-            </article>
-          </div>
-          <!-- end article -->
-
-        </div>
-        <!-- end masonry -->
-      </div>
-      <!-- end masonry-wrap -->
-
-      <div class="row">
-        <div class="col-full">
-          <nav class="pgn">
-            <ul>
-              <li>
-                <a class="pgn__prev" href="#0">Prev</a>
-              </li>
-              <li>
-                <a class="pgn__num" href="#0">1</a>
-              </li>
-              <li>
-                <span class="pgn__num current">2</span>
-              </li>
-              <li>
-                <a class="pgn__num" href="#0">3</a>
-              </li>
-              <li>
-                <a class="pgn__num" href="#0">4</a>
-              </li>
-              <li>
-                <a class="pgn__num" href="#0">5</a>
-              </li>
-              <li>
-                <span class="pgn__num dots">…</span>
-              </li>
-              <li>
-                <a class="pgn__num" href="#0">8</a>
-              </li>
-              <li>
-                <a class="pgn__next" href="#0">Next</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </section>
-    <!-- s-content -->
-  </div>
+                <!-- end masonry -->
+            </div>
+            <!-- end masonry-wrap -->
+            <div class="row">
+                <div class="col-full">
+                    <nav class="pgn">
+                        <ul>
+                            <li>
+                                <a :class="'pgn__prev ' + (currentPage === 1 ? 'hide' : '')" @click="handleChangePage(currentPage - 1)">Prev</a>
+                            </li>
+                            <li v-for="page in paginate.last_page">
+                                <a :class="(page === currentPage ? 'current ' : '') + ' ' + 'pgn__num'" @click="handleChangePage(page)">{{page}}</a>
+                            </li>
+                            <li>
+                                <a :class="'pgn__next ' + (currentPage === paginate.last_page ? 'hide' : '')" @click="handleChangePage(currentPage + 1)">Next</a>
+                            </li>
+                            <!--<li>-->
+                            <!--<span class="pgn__num dots">…</span>-->
+                            <!--</li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- s-content -->
+    </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
-export default {
-  name: "home",
-    data() {
-        return {};
-    },
-    computed: {
-        ...mapState({
-            posts: state => state.posts.posts
-        })
-    },
-    created(){
-        this.$store.dispatch('posts/getPosts');
-    },
-    methods: {
-        getSlugID(post) {
-            return post.slug + "--" + post.id;
+    import {mapState} from "vuex";
+    import Pagination from "../components/Pagination";
+
+    export default {
+        name:       "home",
+        components: {Pagination},
+        data() {
+            return {
+                currentPage: 1
+            };
+        },
+        computed:   {
+            ...mapState({
+                postsTop: state => state.posts.listTop,
+                postTop:  state => state.posts.postTop,
+                posts:    state => state.posts.posts,
+                paginate: state => state.posts.paginate
+            })
+        },
+        created() {
+            this.$store.dispatch("posts/getPostsTop");
+        },
+        mounted() {
+            this.$store.dispatch("posts/getPosts");
+            console.log(this.postTop);
+            console.log(this.postsTop);
+        },
+        methods:    {
+            getSlugID(post) {
+                return post.slug + "--" + post.id;
+            },
+            handleChangePage(page) {
+                if (page <= 0) {
+                    page = 1;
+                }
+                else if (page >= this.paginate.last_page) {
+                    page = this.paginate.last_page;
+                }
+
+                this.currentPage = page;
+                this.$store.dispatch("posts/getPosts", {page: page});
+            }
         }
-    }
-};
+    };
 </script>
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/lamp-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/lamp-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/lamp-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/lamp-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/lamp-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/lamp-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 15, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Just a Standard Format Post.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Design</a>-->
-                  <!--<a href="category.html">Photography</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 15, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Just a Standard Format Post.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Design</a>-->
+<!--<a href="category.html">Photography</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article class="masonry__brick entry format-quote" data-aos="fade-up">-->
-  <!--<div class="entry__thumb">-->
-    <!--<blockquote>-->
-      <!--<p>-->
-        <!--Good design is making something intelligible and memorable.-->
-        <!--Great design is making something memorable and meaningful.-->
-      <!--</p>-->
+<!--<div class="entry__thumb">-->
+<!--<blockquote>-->
+<!--<p>-->
+<!--Good design is making something intelligible and memorable.-->
+<!--Great design is making something memorable and meaningful.-->
+<!--</p>-->
 
-      <!--<cite>Dieter Rams</cite>-->
-    <!--</blockquote>-->
-  <!--</div>-->
+<!--<cite>Dieter Rams</cite>-->
+<!--</blockquote>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/tulips-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/tulips-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/tulips-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/tulips-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/tulips-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/tulips-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 15, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;10 Interesting Facts About Caffeine.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Health</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 15, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;10 Interesting Facts About Caffeine.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Health</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/cookies-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/cookies-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/cookies-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/cookies-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/cookies-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/cookies-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html">No Sugar Oatmeal Cookies.</a>-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Cooking</a>-->
-                  <!--<a href="category.html">Health</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html">No Sugar Oatmeal Cookies.</a>-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Cooking</a>-->
+<!--<a href="category.html">Health</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/wheel-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/wheel-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/wheel-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/wheel-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/wheel-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/wheel-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Visiting Theme Parks Improves Your Health.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="#">Health</a>-->
-                  <!--<a href="#">Lifestyle</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Visiting Theme Parks Improves Your Health.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="#">Health</a>-->
+<!--<a href="#">Lifestyle</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article class="masonry__brick entry format-video" data-aos="fade-up">-->
-  <!--<div class="entry__thumb video-image">-->
-    <!--<a-->
-            <!--href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0"-->
-            <!--data-lity-->
-    <!--&gt;-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/shutterbug-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/shutterbug-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/shutterbug-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb video-image">-->
+<!--<a-->
+<!--href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0"-->
+<!--data-lity-->
+<!--&gt;-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/shutterbug-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/shutterbug-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/shutterbug-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-video.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-video.html"-->
-        <!--&gt;Key Benefits Of Family Photography.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Family</a>-->
-                  <!--<a href="category.html">Photography</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-video.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-video.html"-->
+<!--&gt;Key Benefits Of Family Photography.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Family</a>-->
+<!--<a href="category.html">Photography</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-gallery"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-gallery"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb slider">-->
-    <!--<div class="slider__slides">-->
-      <!--<div class="slider__slide">-->
-        <!--<img-->
-                <!--src="/assets/images/thumbs/masonry/gallery/gallery-1-400.jpg"-->
-                <!--srcset="-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-1-400.jpg 1x,-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-1-800.jpg 2x-->
-                    <!--"-->
-                <!--alt=""-->
-        <!--/>-->
-      <!--</div>-->
-      <!--<div class="slider__slide">-->
-        <!--<img-->
-                <!--src="/assets/images/thumbs/masonry/gallery/gallery-2-400.jpg"-->
-                <!--srcset="-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-2-400.jpg 1x,-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-2-800.jpg 2x-->
-                    <!--"-->
-                <!--alt=""-->
-        <!--/>-->
-      <!--</div>-->
-      <!--<div class="slider__slide">-->
-        <!--<img-->
-                <!--src="/assets/images/thumbs/masonry/gallery/gallery-3-400.jpg"-->
-                <!--srcset="-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-3-400.jpg 1x,-->
-                      <!--/assets/images/thumbs/masonry/gallery/gallery-3-800.jpg 2x-->
-                    <!--"-->
-                <!--alt=""-->
-        <!--/>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__thumb slider">-->
+<!--<div class="slider__slides">-->
+<!--<div class="slider__slide">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/gallery/gallery-1-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-1-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-1-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="slider__slide">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/gallery/gallery-2-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-2-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-2-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="slider__slide">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/gallery/gallery-3-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-3-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/gallery/gallery-3-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-gallery.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-gallery.html"-->
-        <!--&gt;Workspace Design Trends and Ideas.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Work</a>-->
-                  <!--<a href="category.html">Management</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-gallery.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-gallery.html"-->
+<!--&gt;Workspace Design Trends and Ideas.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Work</a>-->
+<!--<a href="category.html">Management</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article class="masonry__brick entry format-audio" data-aos="fade-up">-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-audio.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/guitarman-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/guitarman-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/guitarman-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-    <!--<div class="audio-wrap">-->
-      <!--<audio-->
-              <!--id="player"-->
-              <!--src="media/AirReview-Landmarks-02-ChasingCorporate.mp3"-->
-              <!--width="100%"-->
-              <!--height="42"-->
-              <!--controls="controls"-->
-      <!--&gt;</audio>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-audio.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/guitarman-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/guitarman-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/guitarman-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--<div class="audio-wrap">-->
+<!--<audio-->
+<!--id="player"-->
+<!--src="media/AirReview-Landmarks-02-ChasingCorporate.mp3"-->
+<!--width="100%"-->
+<!--height="42"-->
+<!--controls="controls"-->
+<!--&gt;</audio>-->
+<!--</div>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-audio.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-audio.html"-->
-        <!--&gt;What Your Music Preference Says About You and Your-->
-          <!--Personality.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Music</a>-->
-                  <!--<a href="category.html">Lifestyle</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-audio.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-audio.html"-->
+<!--&gt;What Your Music Preference Says About You and Your-->
+<!--Personality.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Music</a>-->
+<!--<a href="category.html">Lifestyle</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article class="masonry__brick entry format-link" data-aos="fade-up">-->
-  <!--<div class="entry__thumb">-->
-    <!--<div class="link-wrap">-->
-      <!--<p>-->
-        <!--The Only Resource You Will Need To Start a Blog Using-->
-        <!--WordPress.-->
-      <!--</p>-->
-      <!--<cite>-->
-        <!--<a target="_blank" href="https://colorlib.com/"-->
-        <!--&gt;https://colorlib.com</a-->
-        <!--&gt;-->
-      <!--</cite>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<div class="link-wrap">-->
+<!--<p>-->
+<!--The Only Resource You Will Need To Start a Blog Using-->
+<!--WordPress.-->
+<!--</p>-->
+<!--<cite>-->
+<!--<a target="_blank" href="https://colorlib.com/"-->
+<!--&gt;https://colorlib.com</a-->
+<!--&gt;-->
+<!--</cite>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/jump-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/jump-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/jump-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/jump-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/jump-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/jump-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Create Meaningful Family Moments.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Family</a>-->
-                  <!--<a href="category.html">Relationship</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Create Meaningful Family Moments.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Family</a>-->
+<!--<a href="category.html">Relationship</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/beetle-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/beetle-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/beetle-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/beetle-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/beetle-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/beetle-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Throwback To The Good Old Days.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Lifestyle</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Throwback To The Good Old Days.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Lifestyle</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/fuji-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/fuji-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/fuji-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/fuji-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/fuji-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/fuji-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Just Another Standard Format Post.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Design</a>-->
-                  <!--<a href="category.html">Photography</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Just Another Standard Format Post.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Design</a>-->
+<!--<a href="category.html">Photography</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
 
 <!--<article-->
-        <!--class="masonry__brick entry format-standard"-->
-        <!--data-aos="fade-up"-->
+<!--class="masonry__brick entry format-standard"-->
+<!--data-aos="fade-up"-->
 <!--&gt;-->
-  <!--<div class="entry__thumb">-->
-    <!--<a href="single-standard.html" class="entry__thumb-link">-->
-      <!--<img-->
-              <!--src="/assets/images/thumbs/masonry/sydney-400.jpg"-->
-              <!--srcset="-->
-                    <!--/assets/images/thumbs/masonry/sydney-400.jpg 1x,-->
-                    <!--/assets/images/thumbs/masonry/sydney-800.jpg 2x-->
-                  <!--"-->
-              <!--alt=""-->
-      <!--/>-->
-    <!--</a>-->
-  <!--</div>-->
+<!--<div class="entry__thumb">-->
+<!--<a href="single-standard.html" class="entry__thumb-link">-->
+<!--<img-->
+<!--src="/assets/images/thumbs/masonry/sydney-400.jpg"-->
+<!--srcset="-->
+<!--/assets/images/thumbs/masonry/sydney-400.jpg 1x,-->
+<!--/assets/images/thumbs/masonry/sydney-800.jpg 2x-->
+<!--"-->
+<!--alt=""-->
+<!--/>-->
+<!--</a>-->
+<!--</div>-->
 
-  <!--<div class="entry__text">-->
-    <!--<div class="entry__header">-->
-      <!--<div class="entry__date">-->
-        <!--<a href="single-standard.html">December 10, 2017</a>-->
-      <!--</div>-->
-      <!--<h1 class="entry__title">-->
-        <!--<a href="single-standard.html"-->
-        <!--&gt;Planning Your First Trip to Sydney.</a-->
-        <!--&gt;-->
-      <!--</h1>-->
-    <!--</div>-->
-    <!--<div class="entry__excerpt">-->
-      <!--<p>-->
-        <!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
-        <!--incididunt mollit id et sit proident dolor nulla sed commodo-->
-        <!--est ad minim elit reprehenderit nisi officia aute incididunt-->
-        <!--velit sint in aliqua...-->
-      <!--</p>-->
-    <!--</div>-->
-    <!--<div class="entry__meta">-->
-                <!--<span class="entry__meta-links">-->
-                  <!--<a href="category.html">Travel</a>-->
-                  <!--<a href="category.html">Vacation</a>-->
-                <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="entry__text">-->
+<!--<div class="entry__header">-->
+<!--<div class="entry__date">-->
+<!--<a href="single-standard.html">December 10, 2017</a>-->
+<!--</div>-->
+<!--<h1 class="entry__title">-->
+<!--<a href="single-standard.html"-->
+<!--&gt;Planning Your First Trip to Sydney.</a-->
+<!--&gt;-->
+<!--</h1>-->
+<!--</div>-->
+<!--<div class="entry__excerpt">-->
+<!--<p>-->
+<!--Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua-->
+<!--incididunt mollit id et sit proident dolor nulla sed commodo-->
+<!--est ad minim elit reprehenderit nisi officia aute incididunt-->
+<!--velit sint in aliqua...-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="entry__meta">-->
+<!--<span class="entry__meta-links">-->
+<!--<a href="category.html">Travel</a>-->
+<!--<a href="category.html">Vacation</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--</article>-->
 <!--&lt;!&ndash; end article &ndash;&gt;-->
