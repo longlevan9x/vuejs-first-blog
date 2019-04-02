@@ -46,6 +46,14 @@ const actions = {
         post.getBySlug(slug).then(response => {
             commit("setPost", response.result);
         });
+    },
+
+    getPostsSearch({commit}, params) {
+        post.getPostsSearch(params).then(response => {
+            if (response.status === 200) {
+                commit("setPosts", response.result);
+            }
+        });
     }
 };
 

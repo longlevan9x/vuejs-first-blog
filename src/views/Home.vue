@@ -160,8 +160,8 @@
         },
         mounted() {
             this.$store.dispatch("posts/getPosts");
-            console.log(this.postTop);
-            console.log(this.postsTop);
+            // console.log(this.postTop);
+            // console.log(this.postsTop);
         },
         methods:    {
             getSlugID(post) {

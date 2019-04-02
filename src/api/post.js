@@ -45,5 +45,17 @@ export default {
             .join("&");
         //return promise
         return Request.get("post/popular").then(response => response.data);
+    },
+    /**
+     *
+     * @param params
+     * @return {Q.Promise<any> | Q.Promise<T | never> | PromiseLike<T | never> | *}
+     */
+    getPostsSearch(params = {}) {
+        let query = Object.keys(params)
+            .map(key => key + "=" + params[key])
+            .join("&");
+        //return promise
+        return Request.get("post/search?" + query).then(response => response.data);
     }
 };
