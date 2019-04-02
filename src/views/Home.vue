@@ -166,7 +166,8 @@
             this.$store.dispatch("posts/getPostsTop");
         },
         mounted() {
-            this.$store.dispatch("posts/getPosts");
+            this.currentPage = parseInt(this.$route.query.page) || 1
+            this.$store.dispatch("posts/getPosts", {page : this.currentPage});
             // console.log(this.postTop);
             // console.log(this.postsTop);
         },

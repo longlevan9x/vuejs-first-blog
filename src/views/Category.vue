@@ -132,12 +132,9 @@
         },
         watch: {
             "$route.params"(to, from) {
-                console.log(to)
-                console.log(from)
-                console.log(this.$route)
-                this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug);
-                console.log(this.category)
-                this.getPostByCategory(this.category.id);
+                this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
+                    this.getPostByCategory(category.id);
+                });
             }
         }
     };
