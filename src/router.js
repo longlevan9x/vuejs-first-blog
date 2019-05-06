@@ -6,7 +6,7 @@ import Contact    from "./views/Contact.vue";
 import About      from "./views/About.vue";
 import Category   from "./views/Category.vue";
 import PostDetail from "./views/post/Detail.vue";
-import PostList   from "./views/post/List.vue";
+import Search   from "./views/Search.vue";
 
 Vue.use(Router);
 
@@ -47,6 +47,11 @@ export default new Router({
             path:      "/category",
             name:      "category",
             component: Category
+        },
+        {
+            path : "/search",
+            name : "search",
+            component : Search
         },
         {
             path:      "/:slug--:id",

@@ -6,7 +6,7 @@
             <div class="header__content row">
                 <div class="header__logo">
                     <a class="logo" href="index.html">
-                        <img src="/assets/images/logo.svg" alt="Homepage" />
+                        <img src="/assets/images/logo.svg" alt="Homepage"/>
                     </a>
                 </div>
                 <!-- end header__logo -->
@@ -32,10 +32,10 @@
                 <div class="header__search">
                     <form role="search" method="get" class="header__search-form" action="#">
                         <label>
-                            <span class="hide-content">Search for: {{keyword}}</span>
-                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off" v-model="keyword" />
+                            <span class="hide-content">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Type Keywords" name="keyword" title="Search for:" autocomplete="off" v-model="keyword"/>
                         </label>
-                        <input type="button" class="search-submit" value="Search" v-on:click="search()" />
+                        <input type="button" class="search-submit" value="Search" v-on:click="search()"/>
                     </form>
                     <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
                 </div>
@@ -53,7 +53,9 @@
                             <a href="#0" title="">Categories</a>
                             <ul class="sub-menu">
                                 <li>
-                                    <router-link v-bind:to="category.slug" v-for="category in categories">{{category.name}}</router-link>
+                                    <router-link v-bind:to="category.slug" v-for="category in categories">
+                                        {{category.name}}
+                                    </router-link>
                                 </li>
                             </ul>
                         </li>
@@ -86,12 +88,7 @@
                     </ul>
                     <!-- end header__nav -->
 
-                    <a
-                            href="#0"
-                            title="Close Menu"
-                            class="header__overlay-close close-mobile-menu"
-                    >Close</a
-                    >
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
                 </nav>
                 <!-- end header__nav-wrap -->
             </div>
@@ -106,7 +103,7 @@
     import {mapState} from "vuex";
 
     export default {
-        name:     "Header",
+        name: "Header",
         data() {
             return {keyword: ""};
         },
@@ -120,7 +117,7 @@
         },
         methods: {
             search() {
-                this.$store.dispatch("posts/getPostsSearch", {keyword : this.keyword});
+                this.$router.push({name: "search", query: {keyword: this.keyword}});
             }
         }
     };
