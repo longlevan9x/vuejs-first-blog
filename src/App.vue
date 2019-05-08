@@ -2,7 +2,6 @@
   <div id="app">
     <Header />
     <router-view />
-    <ExtraBottom />
     <Footer />
   </div>
 </template>

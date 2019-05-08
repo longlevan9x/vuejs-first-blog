@@ -6,6 +6,9 @@ module.exports = {
     productionSourceMap: undefined,
     parallel:            undefined,
     configureWebpack:    {
+        resolve: {
+            extensions: ['.js']
+        },
         module: {
             rules: [
                 {
@@ -19,7 +22,35 @@ module.exports = {
                             }
                         }
                     ]
-                }
+                },
+                {
+                    test: require.resolve("jquery-migrate"),
+                    use: "imports-loader?define=>false",
+                },
+                {
+                    test: require.resolve("popper"),
+                    use: "imports-loader?define=>false",
+                },
+                {
+                    test: require.resolve("bootstrap"),
+                    use: "imports-loader?define=>false",
+                },
+                {
+                    test: require.resolve("jquery.easing"),
+                    use: "imports-loader?define=>false",
+                },
+                {
+                    test: require.resolve("jquery-waypoints"),
+                    //use: "imports-loader?define=>false",
+                    use: [
+                        { loader: 'expose-loader', options: 'waypoint' },
+                    ]
+                },
+                {
+                    test: require.resolve("jquery.stellar"),
+                    use: "imports-loader?define=>false",
+                },
+
             ]
         }
     }
