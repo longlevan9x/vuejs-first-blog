@@ -228,11 +228,61 @@
         created() {
             this.currentPage = parseInt(this.$route.query.page) || 1
 
-            this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
-                this.getPostByCategory(category.id, this.currentPage);
-            });
+            // this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
+            //     this.getPostByCategory(category.id, this.currentPage);
+            // });
+        },
+        mounted() {
+            this.waypoint();
         },
         methods: {
+            waypoint() {
+                $(window).stellar({
+                    responsive: true,
+                    parallaxBackgrounds: true,
+                    parallaxElements: true,
+                    horizontalScrolling: false,
+                    hideDistantElements: false,
+                    scrollProperty: 'scroll'
+                });
+
+                $('.js-fullheight').css('height', $(window).height());
+                $(window).resize(function () {
+                    $('.js-fullheight').css('height', $(window).height());
+                });
+                var i = 0;
+                $('.ftco-animate').waypoint(function (direction) {
+
+                    if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
+
+                        i++;
+
+                        $(this.element).addClass('item-animate');
+                        setTimeout(function () {
+
+                            $('body .ftco-animate.item-animate').each(function (k) {
+                                var el = $(this);
+                                setTimeout(function () {
+                                    var effect = el.data('animate-effect');
+                                    if (effect === 'fadeIn') {
+                                        el.addClass('fadeIn ftco-animated');
+                                    } else if (effect === 'fadeInLeft') {
+                                        el.addClass('fadeInLeft ftco-animated');
+                                    } else if (effect === 'faadeInRight') {
+                                        el.addClass('fadeInRight ftco-animated');
+                                    } else {
+                                        el.addClass('fadeInUp ftco-animated');
+                                    }
+                                    el.removeClass('item-animate');
+                                }, k * 50, 'easeInOutExpo');
+                            });
+
+                        }, 100);
+
+                    }
+
+                }, {offset: '95%'});
+            },
             goToDetail(post) {
                 this.$store.commit("post/goDetail", post);
             },
