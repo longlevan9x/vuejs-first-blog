@@ -26,6 +26,10 @@ module.exports = {
                     ]
                 },
                 {
+                    test: require.resolve("jquery-migrate"),
+                    use: "imports-loader?define=>false",
+                },
+                {
                     test: require.resolve("owl.carousel"),
                     use: "imports-loader?define=>false",
                 },

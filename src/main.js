@@ -9,10 +9,8 @@ import jQuery from "jquery"
 global.$ = jQuery;
 global.jQuery = jQuery;
 
-const stellar = require("jquery.stellar/jquery.stellar")
-window.stellar = stellar
-
 import "owl.carousel"
+import "jquery-migrate"
 
 Vue.config.productionTip = false;
 
