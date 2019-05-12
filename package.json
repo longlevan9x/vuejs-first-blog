@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "imports-loader": "^0.8.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.2.1",
     "jquery-migrate": "^3.0.1",
     "jquery-waypoints": "^2.0.5",
     "jquery.stellar": "^0.6.2",
@@ -19,7 +19,8 @@
     "vue-masonry": "^0.11.7",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "waypoints": "^4.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",

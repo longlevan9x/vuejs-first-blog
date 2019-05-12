@@ -10,7 +10,8 @@ global.$ = jQuery;
 global.jQuery = jQuery;
 
 import "owl.carousel"
-import "jquery-migrate"
+import 'waypoints/lib/jquery.waypoints.min'
+// import 'jquery.stellar/jquery.stellar'
 
 Vue.config.productionTip = false;
 
