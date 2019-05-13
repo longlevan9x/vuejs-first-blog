@@ -500,14 +500,15 @@
                             <span class="block-title-detail">MOST POPULAR</span>
                         </h4>
                         <nav>
-                            <ul class="nav block-nav" ref="navBlock">
-                                <li v-for="item in dataMost" :class="typeof item.children === 'undefined' ? '' : 'dropdown'">
-                                    <span v-if="typeof item.children === 'undefined'" :value="item.value">{{item.text}}</span>
-
+                            <ul class="nav block-nav justify-content-end" ref="navBlock">
+                                <li v-for="item in dataMost">
+                                    <span :value="item.value">{{item.text}}</span>
+                                </li>
+                                <li class="dropdown" :style="((childDataMenuDataMost.length === 0) ? 'display:none;' : '') ">
                                     <!--v else-->
-                                    <a v-if="typeof item.children !== 'undefined'" class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{item.text}}</a>
-                                    <div v-if="typeof item.children !== 'undefined'" class="dropdown-menu" aria-labelledby="dropdown04">
-                                        <a class="dropdown-item" href="destination.html" v-for="childItem in item.children" :value="childItem.value">{{childItem.text}}</a>
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                        <a class="dropdown-item" href="" v-for="childItem in childDataMenuDataMost">{{childItem.text}}</a>
                                     </div>
                                 </li>
                             </ul>
@@ -989,15 +990,15 @@
 <script>
 
     import carousel
-                      from "vue-owl-carousel";
+        from "vue-owl-carousel";
     import {mapState} from "vuex";
     import Pagination
-                      from "../components/Pagination";
+        from "../components/Pagination";
     import main
-                      from "../utils/main";
+        from "../utils/main";
 
     export default {
-        name:       "home",
+        name: "home",
         components: {
             Pagination,
             carousel
@@ -1005,105 +1006,40 @@
         data() {
             return {
                 currentPage: 1,
-                dataMost:    [
+                childDataMenuDataMost: [],
+                dataMost: [
                     {
-                        "text":  "A",
+                        "text": "All",
                         "value": 0
                     },
                     {
-                        "text":  "I",
+                        "text": "PHP",
                         "value": 0
                     },
                     {
-                        "text":  "All",
+                        "text": "Javascript",
                         "value": 0
                     },
                     {
-                        "text":  "Al",
+                        "text": "Android",
                         "value": 0
                     },
                     {
-                        "text":  "Ap",
+                        "text": "Lập trính IOS",
                         "value": 0
                     },
                     {
-                        "text":  "Ii",
+                        "text": "Lập trình nhúng",
                         "value": 0
                     },
-                    {
-                        "text":  "PHP",
-                        "value": 0
-                    },
-                    {
-                        "text":  "PHP",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Frontend",
-                        "value": 0
-                    },
-                    {
-                        "text":  "PHP",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Backend",
-                        "value": 0
-                    },
-                    {
-                        "text":  "PHP",
-                        "value": 0
-                    },
-                    {
-                        "text":  "HTML",
-                        "value": 0
-                    },
-                    {
-                        "text":  "PHP",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Javascript",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Android",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Lập trính IOS",
-                        "value": 0
-                    },
-                    {
-                        "text":  "Lập trình nhúng",
-                        "value": 0
-                    },
-                    {
-                        "text":     "PHP",
-                        "value":    0,
-                        "children": [
-                            {
-                                "text":  "PHP",
-                                "value": 0
-                            },
-                            {
-                                "text":  "PHP",
-                                "value": 0
-                            },
-                            {
-                                "text":  "PHP",
-                                "value": 0
-                            }
-                        ]
-                    }
                 ]
             };
         },
-        computed:   {
+        computed: {
             ...mapState({
                 postsTop: state => state.posts.listTop,
-                postTop:  state => state.posts.postTop,
-                posts:    state => state.posts.posts,
+                postTop: state => state.posts.postTop,
+                posts: state => state.posts.posts,
                 paginate: state => state.posts.paginate
             })
         },
@@ -1111,15 +1047,9 @@
             this.$store.dispatch("posts/getPostsTop");
         },
         mounted() {
-            let totalWidthItemNav = 0;
-            let navWidth = this.$refs.navBlock.clientWidth;
-            $(this.$refs.navBlock).find('li').each(function (index, item) {
-                console.log($(item).innerWidth());
-                totalWidthItemNav += $(item).innerWidth();
-                if (totalWidthItemNav > navWidth) {
-                    $(item).hide();
-                }
-            });
+            $(window).bind('resize', this.onResize)
+
+            this.updateNavMostPost();
 
             this.startContent();
             this.currentPage = parseInt(this.$route.query.page) || 1;
@@ -1127,7 +1057,43 @@
             // console.log(this.postTop);
             // console.log(this.postsTop);
         },
-        methods:    {
+        beforeDestroy() {
+            // Unregister the event listener before destroying this Vue instance
+            $(window).unbind('resize', this.onResize)
+        },
+        methods: {
+            updateNavMostPost() {
+                let totalWidthItemNav = 0;
+                let dropdownWidth = $(this.$refs.navBlock).find('li.dropdown').innerWidth();
+                let navWidth = this.$refs.navBlock.clientWidth - dropdownWidth;
+                let subMenu = [];
+                $(this.$refs.navBlock).find('li').each(function (index, item) {
+                    totalWidthItemNav += $(item).innerWidth();
+                    console.log("dropdownWidth " + dropdownWidth);
+                    console.log("navWidth " + navWidth);
+                    if (totalWidthItemNav > navWidth) {
+                        if (!$(item).hasClass("dropdown")) {
+                            $(item).hide();
+                            subMenu.push({
+                                text: $(item).text(),
+                                value: $(item).attr('value'),
+                            });
+                        }
+                    } else {
+                        if (!$(item).hasClass("dropdown")) {
+                            $(item).show();
+                        }
+
+                    }
+                });
+                this.childDataMenuDataMost = subMenu;
+            },
+            onResize(event) {
+                // console.log('window has been resized', event)
+                console.log(this.$refs.navBlock.clientWidth);
+                this.updateNavMostPost();
+
+            },
             startContent() {
                 main.fullHeight();
                 main.homeContentOwl();
@@ -1146,7 +1112,7 @@
 
                 this.currentPage = page;
                 this.$router.push({
-                    path:  "/",
+                    path: "/",
                     query: {page: page}
                 });
                 this.$store.dispatch("posts/getPosts", {page: page});
