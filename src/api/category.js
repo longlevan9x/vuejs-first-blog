@@ -14,5 +14,10 @@ export default {
     },
     detailBySlug(slug) {
         return Request.get(`category/${slug}`).then(response => response.data);
+    },
+    getIsHome() {
+        return Request.get("category/get-with-home").then(
+            response => response.data
+        );
     }
 };

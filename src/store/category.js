@@ -4,6 +4,7 @@ const state = {
     list:      [],
     isLoading: false,
     detail:    {},
+    listByHome: [],
 };
 
 const actions = {
@@ -19,6 +20,11 @@ const actions = {
             commit("setCategory", response.result);
             return response.result;
         });
+    },
+    getCategoriesIsHome({commit}){
+        category.getIsHome().then(response => {
+            commit('setCategoryIsHome', response.result);
+        })
     }
 };
 
@@ -31,6 +37,9 @@ const mutations = {
     },
     displayLoading(state, payLoad) {
         state.isLoading = payLoad;
+    },
+    setCategoryIsHome(state, list) {
+        state.listByHome = list;
     }
 };
 

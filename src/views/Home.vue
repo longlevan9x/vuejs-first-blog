@@ -1040,10 +1040,13 @@
                 postsTop: state => state.posts.listTop,
                 postTop: state => state.posts.postTop,
                 posts: state => state.posts.posts,
-                paginate: state => state.posts.paginate
+                paginate: state => state.posts.paginate,
+                listCategoryIsHome: state => state.category.listByHome
             })
         },
         created() {
+            this.$store.dispatch('category/getCategoriesIsHome');
+            console.log(this.listCategoryIsHome);
             this.$store.dispatch("posts/getPostsTop");
         },
         mounted() {
