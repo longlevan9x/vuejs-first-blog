@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <section class="ftco-section">
+        <section class="ftco-section" v-for="categoryIsHome in listCategoryIsHome">
             <div class="container">
                 <div class="row">
                     <h4 class="block-title">
@@ -1046,7 +1046,6 @@
         },
         created() {
             this.$store.dispatch('category/getCategoriesIsHome');
-            console.log(this.listCategoryIsHome);
             this.$store.dispatch("posts/getPostsTop");
         },
         mounted() {
