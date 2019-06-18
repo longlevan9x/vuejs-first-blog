@@ -1,5 +1,8 @@
 let BASE_URL = '';
-if (process.env.NODE_ENV === "development") {
+
+let env = process.env.NODE_ENV;
+env = 'host';
+if (env === "development") {
     BASE_URL = "http://localhost/laravel-blog/";
 }
 else {

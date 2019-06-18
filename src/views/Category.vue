@@ -1,84 +1,208 @@
 <template>
-    <!-- s-content
-      ================================================== -->
-    <section class="s-content">
-        <div class="row narrow">
-            <div class="col-full s-content__header" data-aos="fade-up">
-                <div class="masonry" id="img-category">
-                    <a href="#" class="entry__thumb-link">
-                        <img v-bind:src="category.image" :srcset="category.image" :alt="category.name"/>
-                    </a>
+    <div>
+        <div class="hero-wrap js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Articles</span></p>
+                        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Post No Sidebar</h1>
+                    </div>
                 </div>
-                <h1>{{category.name}}</h1>
-
-                <p class="lead">
-                    {{category.description}}
-                </p>
             </div>
         </div>
 
-        <div class="row masonry-wrap">
-            <div class="masonry">
-                <div class="grid-sizer"></div>
-                <div v-masonry transition-duration="0.3s" item-selector=".item">
-                    <article v-masonry-tile class="item masonry__brick entry format-standard" data-aos="fade-up"
-                             v-for="post in posts">
-                        <div class="entry__thumb" v-if="post.image">
-                            <router-link :to="getSlugID(post)" class="entry__thumb-link">
-                                <img v-bind:src="post.image" :srcset="post.image" alt=""/>
-                            </router-link>
-                        </div>
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <div class="entry__date">
-                                    <a href="#">{{post.created_at}}</a>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
                                 </div>
-                                <h1 class="entry__title">
-                                    <router-link :to="getSlugID(post)" class="entry__thumb-link">{{post.title}}
-                                    </router-link>
-                                </h1>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>{{post.overview}}...
-                                </p>
-                            </div>
-                            <div class="entry__meta">
-                          <span class="entry__meta-links">
-                            <a href="category.html">Design</a>
-                            <a href="category.html">Photography</a>
-                          </span>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </article>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_2.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_1.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
+                                </div>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_3.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_3.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
+                                </div>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_4.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_1.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
+                                </div>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_5.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
+                                </div>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="blog-entry ftco-animate">
+                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_6.jpg);"></a>
+                            <div class="text text-2 pt-2 mt-3">
+                                <span class="big">Asia</span>
+                                <h3 class="mb-4"><a href="#">What to pack when visiting Philippines in summer time</a></h3>
+                                <div class="author mb-4 d-flex align-items-center">
+                                    <a href="#" class="img" style="background-image: url(assets/images/person_3.jpg);"></a>
+                                    <div class="ml-3 info">
+                                        <span>Written by</span>
+                                        <h3><a href="#">Dave Lewis</a>, <span>October 04, 2018</span></h3>
+                                    </div>
+                                </div>
+                                <div class="meta-wrap align-items-center">
+                                    <div class="half order-md-last">
+                                        <p class="meta">
+                                            <span><i class="icon-heart"></i>3</span>
+                                            <span><i class="icon-eye"></i>100</span>
+                                            <span><i class="icon-comment"></i>5</span>
+                                        </p>
+                                    </div>
+                                    <div class="half">
+                                        <p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- end article -->
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <div class="block-27">
+                            <ul>
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- end masonry -->
-        </div>
-        <!-- end masonry-wrap -->
+        </section>
+    </div>
 
-        <!-- end masonry-wrap -->
-        <div class="row" v-if="paginate.total != null">
-            <div class="col-full">
-                <nav class="pgn">
-                    <ul>
-                        <li><a :class="'pgn__prev ' + (currentPage === 1 ? 'hide' : '')"
-                               @click="handleChangePage(currentPage - 1)">Prev</a></li>
-                        <li v-for="page in paginate.last_page">
-                            <a :class="(page === currentPage ? 'current ' : '') + ' ' + 'pgn__num'"
-                               @click="handleChangePage(page)">{{page}}</a>
-                        </li>
-                        <li><a :class="'pgn__next ' + (currentPage === paginate.last_page ? 'hide' : '')"
-                               @click="handleChangePage(currentPage + 1)">Next</a></li>
-                        <!--<li>-->
-                        <!--<span class="pgn__num dots">…</span>-->
-                        <!--</li>-->
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </section>
-    <!-- s-content -->
 </template>
 
 <script>
@@ -104,11 +228,61 @@
         created() {
             this.currentPage = parseInt(this.$route.query.page) || 1
 
-            this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
-                this.getPostByCategory(category.id, this.currentPage);
-            });
+            // this.$store.dispatch("category/getCategoryBySlug", this.$route.params.slug).then(category => {
+            //     this.getPostByCategory(category.id, this.currentPage);
+            // });
+        },
+        mounted() {
+            this.waypoint();
         },
         methods: {
+            waypoint() {
+                $(window).stellar({
+                    responsive: true,
+                    parallaxBackgrounds: true,
+                    parallaxElements: true,
+                    horizontalScrolling: false,
+                    hideDistantElements: false,
+                    scrollProperty: 'scroll'
+                });
+
+                $('.js-fullheight').css('height', $(window).height());
+                $(window).resize(function () {
+                    $('.js-fullheight').css('height', $(window).height());
+                });
+                var i = 0;
+                $('.ftco-animate').waypoint(function (direction) {
+
+                    if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
+
+                        i++;
+
+                        $(this.element).addClass('item-animate');
+                        setTimeout(function () {
+
+                            $('body .ftco-animate.item-animate').each(function (k) {
+                                var el = $(this);
+                                setTimeout(function () {
+                                    var effect = el.data('animate-effect');
+                                    if (effect === 'fadeIn') {
+                                        el.addClass('fadeIn ftco-animated');
+                                    } else if (effect === 'fadeInLeft') {
+                                        el.addClass('fadeInLeft ftco-animated');
+                                    } else if (effect === 'faadeInRight') {
+                                        el.addClass('fadeInRight ftco-animated');
+                                    } else {
+                                        el.addClass('fadeInUp ftco-animated');
+                                    }
+                                    el.removeClass('item-animate');
+                                }, k * 50, 'easeInOutExpo');
+                            });
+
+                        }, 100);
+
+                    }
+
+                }, {offset: '95%'});
+            },
             goToDetail(post) {
                 this.$store.commit("post/goDetail", post);
             },

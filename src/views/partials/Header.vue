@@ -1,102 +1,41 @@
 <template>
-    <!-- pageheader
-     ================================================== -->
-    <section class="s-pageheader s-pageheader--home">
-        <header class="header">
-            <div class="header__content row">
-                <div class="header__logo">
-                    <a class="logo" href="index.html">
-                        <img src="/assets/images/logo.svg" alt="Homepage"/>
-                    </a>
-                </div>
-                <!-- end header__logo -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Explorer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
 
-                <ul class="header__social">
-                    <li>
-                        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <router-link to="home" class="nav-link">Home</router-link>
                     </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <li class="nav-item active dropdown">
+                        <router-link to="category" class="nav-link">Category</router-link>
                     </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Archives</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="destination.html">Destination</a>
+                            <a class="dropdown-item" href="tag.html">Tag</a>
+                            <a class="dropdown-item" href="author-post.html">Authors Post</a>
+                        </div>
                     </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="right-sidebar.html">Right Sidebar</a>
+                            <a class="dropdown-item" href="left-sidebar.html">Left Sidebar</a>
+                            <a class="dropdown-item" href="author.html">Authors Page</a>
+                        </div>
                     </li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
-                <!-- end header__social -->
-
-                <a class="header__search-trigger" href="#0"></a>
-
-                <div class="header__search">
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="search-field" placeholder="Type Keywords" name="keyword" title="Search for:" autocomplete="off" v-model="keyword"/>
-                        </label>
-                        <input type="button" class="search-submit" value="Search" v-on:click="search()"/>
-                    </form>
-                    <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
-                </div>
-                <!-- end header__search -->
-
-                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
-
-                <nav class="header__nav-wrap">
-                    <h2 class="header__nav-heading h6">Site Navigation</h2>
-                    <ul class="header__nav">
-                        <li class="current">
-                            <router-link to="/">Home</router-link>
-                        </li>
-                        <li class="has-children">
-                            <a href="#0" title="">Categories</a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <router-link v-bind:to="category.slug" v-for="category in categories">
-                                        {{category.name}}
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-                        <!--<li class="has-children">-->
-                        <!--<a href="#0" title="">Blog</a>-->
-                        <!--<ul class="sub-menu">-->
-                        <!--<li>-->
-                        <!--<router-link to="/post-video">Video Post</router-link>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<router-link to="/post-audio">Audio Post</router-link>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<router-link to="/post-gallery">Gallery Post</router-link>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<router-link to="/post-standard">Standard Post</router-link>-->
-                        <!--</li>-->
-                        <!--</ul>-->
-                        <!--</li>-->
-                        <li>
-                            <router-link to="/style-guide">Styles</router-link>
-                        </li>
-                        <li>
-                            <router-link to="/about">About</router-link>
-                        </li>
-                        <li>
-                            <router-link to="/contact">Contact</router-link>
-                        </li>
-                    </ul>
-                    <!-- end header__nav -->
-
-                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
-                </nav>
-                <!-- end header__nav-wrap -->
             </div>
-            <!-- header-content -->
-        </header>
-        <!-- header -->
-    </section>
-    <!-- end s-pageheader -->
+        </div>
+    </nav>
+    <!-- END nav -->
 </template>
 
 <script>
