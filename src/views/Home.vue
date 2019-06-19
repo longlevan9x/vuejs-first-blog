@@ -22,7 +22,7 @@
                         <span class="block-title-detail">{{categoryIsHome.name}}</span>
                     </h4>
                     <div class="owl-carousel " style="display: block;">
-                        <carousel :autoplay="true" :nav="true" :items="4" :responsive="{0:{items:4},600:{items:4},1000:{items:4}}">
+                        <carousel :autoplay="true" :nav="true" :items="4" :responsive="{0:{items:4},600:{items:4},1000:{items:4}}" :navText="['<span class=\'ion-ios-arrow-back\'>', '<span class=\'ion-ios-arrow-forward\'>']">
                         <div class="col-md-12" v-for="(postIsHome, index) in listPostIsHome[categoryIsHome.id]">
                             <div class="blog-entry ftco-animate fadeInUp ftco-animated">
                                 <a href="#" class="img img-2" :style="{backgroundImage: 'url(' + postIsHome.image + ')'}"></a>
@@ -71,8 +71,8 @@
                         </h4>
                         <nav>
                             <ul class="nav block-nav justify-content-end" ref="navBlock">
-                                <li v-for="item in dataMost">
-                                    <span :value="item.value">{{item.text}}</span>
+                                <li v-for="item in listCategoryMost">
+                                    <span :value="item.value">{{item.name}}</span>
                                 </li>
                                 <li class="dropdown" :style="((childDataMenuDataMost.length === 0) ? 'display:none;' : '') ">
                                     <!--v else-->
@@ -600,11 +600,44 @@ export default {
                     "text": "Lập trình nhúng",
                     "value": 0
                 },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
+                {
+                    "text": "Lập trình nhúng",
+                    "value": 0
+                },
             ]
         };
     },
     computed: {
         ...mapState({
+            listCategoryMost: state => state.category.listCategoryMost,
             posts: state => state.posts.posts,
             paginate: state => state.posts.paginate,
             listPostIsHome: state => state.home.listPostIsHome,
@@ -613,7 +646,7 @@ export default {
     },
     created() {
         this.$store.dispatch('home/getListPostCategoryIsHome');
-        this.$store.dispatch("posts/getPostsTop");
+        this.$store.dispatch('category/getCategoriesMost');
     },
     mounted() {
         $(window).bind('resize', this.onResize);
@@ -623,22 +656,13 @@ export default {
         this.startContent();
         this.currentPage = parseInt(this.$route.query.page) || 1;
         this.$store.dispatch("posts/getPosts", {page: this.currentPage});
-        // console.log(this.postTop);
-        // console.log(this.postsTop);
+
     },
     beforeDestroy() {
         // Unregister the event listener before destroying this Vue instance
         $(window).unbind('resize', this.onResize)
     },
     methods: {
-        // checkIndexPostIsHome(category_id, index) {
-        //     if (index === this.listPostIsHome[category_id].length - 1) {
-        //         this.$nextTick(function () {
-        //             main.homeContentOwl();
-        //             main.contentWaypoint();
-        //         });
-        //     }
-        // },
         updateNavMostPost() {
             let totalWidthItemNav = 0;
             let dropdownWidth = $(this.$refs.navBlock).find('li.dropdown').innerWidth();
@@ -646,8 +670,8 @@ export default {
             let subMenu = [];
             $(this.$refs.navBlock).find('li').each(function (index, item) {
                 totalWidthItemNav += $(item).innerWidth();
-                // console.log("dropdownWidth " + dropdownWidth);
-                // console.log("navWidth " + navWidth);
+                console.log("dropdownWidth " + dropdownWidth);
+                console.log("navWidth " + navWidth);
                 if (totalWidthItemNav > navWidth) {
                     if (!$(item).hasClass("dropdown")) {
                         $(item).hide();

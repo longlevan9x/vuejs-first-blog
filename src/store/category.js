@@ -2,17 +2,15 @@ import category from "../api/category";
 
 const state = {
     list:      [],
-    isLoading: false,
     detail:    {},
     listByHome: [],
+    listCategoryMost: []
 };
 
 const actions = {
     getCategories({commit}) {
-        commit("displayLoading", true);
         category.get().then(response => {
             commit("setCategories", response.result);
-            commit("displayLoading", false);
         });
     },
     getCategoryBySlug({commit}, slug) {
@@ -25,6 +23,15 @@ const actions = {
         category.getIsHome().then(response => {
             commit('setCategoryIsHome', response.result);
         })
+    },
+    getCategoriesMost({commit}) {
+        let query = {
+            columns: "id,name"
+        };
+
+        category.get(query).then(response => {
+            commit("setCategoryMost", response.result);
+        });
     }
 };
 
@@ -35,11 +42,11 @@ const mutations = {
     setCategories(state, categories) {
         state.list = categories;
     },
-    displayLoading(state, payLoad) {
-        state.isLoading = payLoad;
-    },
     setCategoryIsHome(state, list) {
         state.listByHome = list;
+    },
+    setCategoryMost(state, categories) {
+        state.listCategoryMost = categories;
     }
 };
 
