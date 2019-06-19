@@ -21,10 +21,10 @@
                     <h4 class="block-title">
                         <span class="block-title-detail">{{categoryIsHome.name}}</span>
                     </h4>
-                    <div class="owl-carousel content-main">
-
-                        <div class="col-md-12" v-for="(postIsHome, index) in listPostIsHome[categoryIsHome.id]" :key="checkIndexPostIsHome(categoryIsHome.id, index)">
-                            <div class="blog-entry ftco-animate">
+                    <div class="owl-carousel " style="display: block;">
+                        <carousel :autoplay="true" :nav="true" :items="4" :responsive="{0:{items:4},600:{items:4},1000:{items:4}}">
+                        <div class="col-md-12" v-for="(postIsHome, index) in listPostIsHome[categoryIsHome.id]">
+                            <div class="blog-entry ftco-animate fadeInUp ftco-animated">
                                 <a href="#" class="img img-2" :style="{backgroundImage: 'url(' + postIsHome.image + ')'}"></a>
                                 <div class="text text-2 pt-2 mt-3">
                                     <h3 class="mb-4">
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        </carousel>
                     </div>
 
                 </div>
@@ -614,7 +614,6 @@ export default {
     created() {
         this.$store.dispatch('home/getListPostCategoryIsHome');
         this.$store.dispatch("posts/getPostsTop");
-        this.startContent();
     },
     mounted() {
         $(window).bind('resize', this.onResize);
@@ -632,15 +631,14 @@ export default {
         $(window).unbind('resize', this.onResize)
     },
     methods: {
-        checkIndexPostIsHome(category_id, index) {
-            this.startContent();
-            if (index === this.listPostIsHome[category_id].length - 1) {
-                this.$nextTick(function () {
-                    main.homeContentOwl();
-                    main.contentWaypoint();
-                });
-            }
-        },
+        // checkIndexPostIsHome(category_id, index) {
+        //     if (index === this.listPostIsHome[category_id].length - 1) {
+        //         this.$nextTick(function () {
+        //             main.homeContentOwl();
+        //             main.contentWaypoint();
+        //         });
+        //     }
+        // },
         updateNavMostPost() {
             let totalWidthItemNav = 0;
             let dropdownWidth = $(this.$refs.navBlock).find('li.dropdown').innerWidth();
