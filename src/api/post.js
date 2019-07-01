@@ -8,6 +8,9 @@ export default {
      * @return {Q.Promise<any> | Q.Promise<T | never> | PromiseLike<T | never> | *}
      */
     get(params = {}) {
+        if (typeof params === "undefined") {
+            params = {}
+        }
         params.is_active = 1;
 
         let query = Object.keys(params)
@@ -44,7 +47,7 @@ export default {
             .map(key => key + "=" + params[key])
             .join("&");
         //return promise
-        return Request.get("post/popular").then(response => response.data);
+        return Request.get("post/popular?" + query).then(response => response.data);
     },
     /**
      *

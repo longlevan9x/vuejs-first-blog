@@ -34,8 +34,15 @@ const actions = {
             }
         });
     },
-    getPostsPopular({commit}) {
-        post.getListPopular().then(response => {
+    getPostsPopular({commit}, params) {
+        if (typeof params === "undefined") {
+            params = {};
+        }
+        params.order_by = "created_at,desc";
+        params.limit = 10;
+        params.columns = "id,title,slug,image";
+
+        post.getListPopular(params).then(response => {
             if (response.status === 200) {
                 commit("setListPopular", response.result);
             }

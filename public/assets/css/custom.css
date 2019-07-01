@@ -1,3 +1,7 @@
 .owl-theme .owl-dots .owl-dot span {
     display: none!important;
 }
+
+.owl-theme .owl-nav [class*='owl-'], .owl-theme .owl-nav [class*='owl-']:hover {
+    background: none!important;
+}

@@ -25,10 +25,10 @@
                         <carousel :autoplay="true" :nav="true" :items="4" :responsive="{0:{items:4},600:{items:4},1000:{items:4}}" :navText="['<span class=\'ion-ios-arrow-back\'>', '<span class=\'ion-ios-arrow-forward\'>']">
                         <div class="col-md-12" v-for="(postIsHome, index) in listPostIsHome[categoryIsHome.id]">
                             <div class="blog-entry ftco-animate fadeInUp ftco-animated">
-                                <a href="#" class="img img-2" :style="{backgroundImage: 'url(' + postIsHome.image + ')'}"></a>
+                                <router-link class="img img-2" :style="{backgroundImage: 'url(' + postIsHome.image + ')'}" :to="postIsHome.slug + '--' + postIsHome.id"></router-link>
                                 <div class="text text-2 pt-2 mt-3">
                                     <h3 class="mb-4">
-                                        <a href="#">{{postIsHome.title}}</a>
+                                        <router-link :to="postIsHome.slug + '--' + postIsHome.id">{{postIsHome.title}}</router-link>
                                     </h3>
                                     <div class="author mb-4 d-flex align-items-center">
                                         <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
@@ -67,7 +67,7 @@
 
                     <div class="block-title">
                         <h4>
-                            <span class="block-title-detail">MOST POPULAR</span>
+                            <span class="block-title-detail">Phổ biến nhất</span>
                         </h4>
                         <nav>
                             <ul class="nav block-nav justify-content-end" ref="navBlock">
@@ -85,233 +85,64 @@
                         </nav>
 
                     </div>
-                    <div class="owl-carousel content-main">
 
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
+                    <div class="owl-carousel " style="display: block;">
+                        <carousel :autoplay="true" :nav="true" :items="4" :responsive="{0:{items:4},600:{items:4},1000:{items:4}}" :navText="['<span class=\'ion-ios-arrow-back\'>', '<span class=\'ion-ios-arrow-forward\'>']">
+                            <div class="col-md-12" v-for="(postPopular, index) in listPostPopular">
+                                <div class="blog-entry ftco-animate fadeInUp ftco-animated">
+                                    <router-link class="img img-2" :style="{backgroundImage: 'url(' + postPopular.image + ')'}" :to="postPopular.slug + '--' + postPopular.id"></router-link>
+                                    <div class="text text-2 pt-2 mt-3">
+                                        <h3 class="mb-4">
+                                            <router-link :to="postPopular.slug + '--' + postPopular.id">{{postPopular.title}}</router-link>
+                                        </h3>
+                                        <div class="author mb-4 d-flex align-items-center">
+                                            <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
+                                            <div class="ml-3 info">
+                                                <h3>
+                                                    <a href="#">Dave Lewis</a>,
+                                                    <span>October 04, 2018</span>
+                                                </h3>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    <h3 class="mb-4">
-                                        <a href="#">What to pack when visiting Philippines in summer time</a>
-                                    </h3>
-                                    <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <h3>
-                                                <a href="#">Dave Lewis</a>,
-                                                <span>October 04, 2018</span>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <!--<div class="meta-wrap align-items-center">-->
-                                    <!--<div class="half order-md-last">-->
-                                    <!--<p class="meta">-->
-                                    <!--<span><i class="icon-heart"></i>3</span>-->
-                                    <!--<span><i class="icon-eye"></i>100</span>-->
-                                    <!--<span><i class="icon-comment"></i>5</span>-->
-                                    <!--</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="half">-->
-                                    <!--<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-                            </div>
-                        </div>
-
+                        </carousel>
                     </div>
+                    <!--<div class="owl-carousel content-main">-->
+
+                        <!--<div class="col-md-12">-->
+                            <!--<div class="blog-entry ftco-animate">-->
+                                <!--<a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>-->
+                                <!--<div class="text text-2 pt-2 mt-3">-->
+                                    <!--<h3 class="mb-4">-->
+                                        <!--<a href="#">What to pack when visiting Philippines in summer time</a>-->
+                                    <!--</h3>-->
+                                    <!--<div class="author mb-4 d-flex align-items-center">-->
+                                        <!--<a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>-->
+                                        <!--<div class="ml-3 info">-->
+                                            <!--<h3>-->
+                                                <!--<a href="#">Dave Lewis</a>,-->
+                                                <!--<span>October 04, 2018</span>-->
+                                            <!--</h3>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash;<div class="meta-wrap align-items-center">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="half order-md-last">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<p class="meta">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span><i class="icon-heart"></i>3</span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span><i class="icon-eye"></i>100</span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span><i class="icon-comment"></i>5</span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="half">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<p><a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a></p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                 </div>
             </div>
@@ -323,12 +154,12 @@
                     <h4 class="block-title">
                         <span class="block-title-detail">Bài viết mới nhất</span>
                     </h4>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_1.jpg);"></a>
+                    <div class="col-md-3" v-for="post in postLatest.data">
+                        <div class="blog-entry ftco-animate fadeInUp ftco-animated">
+                            <router-link class="img img-2" :style="{backgroundImage: 'url(' + post.image + ')'}" :to="post.slug + '--' + post.id"></router-link>
                             <div class="text text-2 pt-2 mt-3">
                                 <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
+                                    <router-link :to="post.slug + '--' + post.id">{{post.title}}</router-link>
                                 </h3>
                                 <div class="author mb-4 d-flex align-items-center">
                                     <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
@@ -339,185 +170,20 @@
                                         </h3>
                                     </div>
                                 </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_2.jpg);"></a>
-                            <div class="text text-2 pt-2 mt-3">
-                                <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
-                                </h3>
-                                <div class="author mb-4 d-flex align-items-center">
-                                    <a href="#" class="img" style="background-image: url(assets/images/person_1.jpg);"></a>
-                                    <div class="ml-3 info">
-                                        <h3>
-                                            <a href="#">Dave Lewis</a>,
-                                            <span>October 04, 2018</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_3.jpg);"></a>
-                            <div class="text text-2 pt-2 mt-3">
-                                <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
-                                </h3>
-                                <div class="author mb-4 d-flex align-items-center">
-                                    <a href="#" class="img" style="background-image: url(assets/images/person_3.jpg);"></a>
-                                    <div class="ml-3 info">
-                                        <h3>
-                                            <a href="#">Dave Lewis</a>,
-                                            <span>October 04, 2018</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_4.jpg);"></a>
-                            <div class="text text-2 pt-2 mt-3">
-                                <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
-                                </h3>
-                                <div class="author mb-4 d-flex align-items-center">
-                                    <a href="#" class="img" style="background-image: url(assets/images/person_1.jpg);"></a>
-                                    <div class="ml-3 info">
-                                        <h3>
-                                            <a href="#">Dave Lewis</a>,
-                                            <span>October 04, 2018</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_5.jpg);"></a>
-                            <div class="text text-2 pt-2 mt-3">
-                                <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
-                                </h3>
-                                <div class="author mb-4 d-flex align-items-center">
-                                    <a href="#" class="img" style="background-image: url(assets/images/person_2.jpg);"></a>
-                                    <div class="ml-3 info">
-                                        <h3>
-                                            <a href="#">Dave Lewis</a>,
-                                            <span>October 04, 2018</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="blog-entry ftco-animate">
-                            <a href="#" class="img img-2" style="background-image: url(assets/images/image_6.jpg);"></a>
-                            <div class="text text-2 pt-2 mt-3">
-                                <h3 class="mb-4">
-                                    <a href="#">What to pack when visiting Philippines in summer time</a>
-                                </h3>
-                                <div class="author mb-4 d-flex align-items-center">
-                                    <a href="#" class="img" style="background-image: url(assets/images/person_3.jpg);"></a>
-                                    <div class="ml-3 info">
-                                        <h3>
-                                            <a href="#">Dave Lewis</a>,
-                                            <span>October 04, 2018</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="meta-wrap align-items-center">
-                                    <div class="half order-md-last">
-                                        <p class="meta">
-                                            <span><i class="icon-heart"></i>3</span>
-                                            <span><i class="icon-eye"></i>100</span>
-                                            <span><i class="icon-comment"></i>5</span>
-                                        </p>
-                                    </div>
-                                    <div class="half">
-                                        <p>
-                                            <a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>
-                                        </p>
-                                    </div>
-                                </div>
+                                <!--<div class="meta-wrap align-items-center">-->
+                                    <!--<div class="half order-md-last">-->
+                                        <!--<p class="meta">-->
+                                            <!--<span><i class="icon-heart"></i>3</span>-->
+                                            <!--<span><i class="icon-eye"></i>100</span>-->
+                                            <!--<span><i class="icon-comment"></i>5</span>-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="half">-->
+                                        <!--<p>-->
+                                            <!--<a href="#" class="btn btn-primary px-3 py-2">Continue Reading</a>-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
@@ -529,20 +195,8 @@
                                 <li>
                                     <a href="#">&lt;</a>
                                 </li>
-                                <li class="active">
-                                    <span>1</span>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
+                                <li v-for="i in postLatest.last_page" :class="i === postLatest.current_page ? 'active': ''">
+                                    <a href="#">{{i}}</a>
                                 </li>
                                 <li>
                                     <a href="#">&gt;</a>
@@ -563,121 +217,88 @@ import carousel from "vue-owl-carousel";
 import {mapState} from "vuex";
 import Pagination from "../components/Pagination";
 import main from "../utils/main";
+import category from "../api/category";
 
 export default {
-    name: "home",
+    name:       "home",
     components: {
         Pagination,
         carousel
     },
     data() {
         return {
-            test : 0,
-            currentPage: 1,
+            test:                  0,
+            currentPage:           1,
             childDataMenuDataMost: [],
-            dataMost: [
-                {
-                    "text": "All",
-                    "value": 0
-                },
-                {
-                    "text": "PHP",
-                    "value": 0
-                },
-                {
-                    "text": "Javascript",
-                    "value": 0
-                },
-                {
-                    "text": "Android",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trính IOS",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-                {
-                    "text": "Lập trình nhúng",
-                    "value": 0
-                },
-            ]
+            listCategoryMost:      [],
+            listPostCategoryMost:  []
         };
     },
     computed: {
         ...mapState({
-            listCategoryMost: state => state.category.listCategoryMost,
-            posts: state => state.posts.posts,
-            paginate: state => state.posts.paginate,
-            listPostIsHome: state => state.home.listPostIsHome,
-            listCategoryIsHome: state => state.home.listCategoryIsHome
+            // listCategoryMost: state => state.category.listCategoryMost,
+            // posts: state => state.posts.posts,
+            paginate:           state => state.posts.paginate,
+            listPostIsHome:     state => state.home.listPostIsHome,
+            listCategoryIsHome: state => state.home.listCategoryIsHome,
+            postLatest:         state => state.home.postLatest,
+            listPostPopular:    state => state.home.listPostPopular
         })
     },
     created() {
-        this.$store.dispatch('home/getListPostCategoryIsHome');
-        this.$store.dispatch('category/getCategoriesMost');
+        this.$store.dispatch("home/getListPostCategoryIsHome");
+        this.$store.dispatch("home/getListPostLatest");
+        this.$store.dispatch("home/getListPostPopular");
+
+        this.getListCategoryMost();
     },
     mounted() {
-        $(window).bind('resize', this.onResize);
+        $(window).bind("resize", this.onResize);
 
-        this.updateNavMostPost();
+        // this.updateNavMostPost();
 
         this.startContent();
         this.currentPage = parseInt(this.$route.query.page) || 1;
-        this.$store.dispatch("posts/getPosts", {page: this.currentPage});
+        // this.$store.dispatch("posts/getPosts", {page: this.currentPage});
 
     },
     beforeDestroy() {
         // Unregister the event listener before destroying this Vue instance
-        $(window).unbind('resize', this.onResize)
+        $(window).unbind("resize", this.onResize);
     },
-    methods: {
+    methods:    {
+        getListCategoryMost() {
+            let query = {
+                columns: "id,name"
+            };
+
+            category.get(query).then(response => {
+                this.listCategoryMost = response.result;
+                this.listCategoryMost.unshift({
+                    value: 0,
+                    name:  "All"
+                });
+                // console.log(this.listCategoryMost);
+                setTimeout(function () {
+                    this.updateNavMostPost();
+                }.bind(this), 1);
+            });
+        },
         updateNavMostPost() {
             let totalWidthItemNav = 0;
-            let dropdownWidth = $(this.$refs.navBlock).find('li.dropdown').innerWidth();
-            let navWidth = this.$refs.navBlock.clientWidth - dropdownWidth;
-            let subMenu = [];
-            $(this.$refs.navBlock).find('li').each(function (index, item) {
+            let dropdownWidth     = $(this.$refs.navBlock).find("li.dropdown").innerWidth();
+            let navWidth          = this.$refs.navBlock.clientWidth - dropdownWidth;
+            let subMenu           = [];
+            $(this.$refs.navBlock).find("li").each(function (index, item) {
                 totalWidthItemNav += $(item).innerWidth();
-                console.log("dropdownWidth " + dropdownWidth);
-                console.log("navWidth " + navWidth);
+                // console.log("dropdownWidth " + dropdownWidth);
+                // console.log("navWidth " + navWidth);
                 if (totalWidthItemNav > navWidth) {
                     if (!$(item).hasClass("dropdown")) {
                         $(item).hide();
                         subMenu.push({
-                            text: $(item).text(),
-                            value: $(item).attr('value'),
+                            text:  $(item).text(),
+                            value: $(item).attr("value")
                         });
                     }
                 } else {
@@ -691,7 +312,7 @@ export default {
         },
         onResize(event) {
             // console.log('window has been resized', event)
-            console.log(this.$refs.navBlock.clientWidth);
+            // console.log(this.$refs.navBlock.clientWidth);
             this.updateNavMostPost();
 
         },
@@ -713,7 +334,7 @@ export default {
 
             this.currentPage = page;
             this.$router.push({
-                path: "/",
+                path:  "/",
                 query: {page: page}
             });
             this.$store.dispatch("posts/getPosts", {page: page});
